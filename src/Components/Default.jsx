@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg?url';
+import viteLogo from '/vite.svg?url'; 
 
 const Default = () =>{
     const [count, setCount] = useState(0)
@@ -15,6 +15,7 @@ const Default = () =>{
                 <img src={reactLogo} className="logo react" alt="React logo" />
                 </a>
             </div>
+
             <h1>Vite + React</h1>
 
             <h2>Diplomado FullStack</h2>
