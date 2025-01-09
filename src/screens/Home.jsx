@@ -12,7 +12,7 @@ import githubLogo from '../assets/github.svg';
 const Home = ()=> {
 
   return (
-    <>
+    <div>
       {/* <Logo/>
       <Github/> */}
 
@@ -21,7 +21,7 @@ const Home = ()=> {
       <OpenLink redirectURL="https://github.com/Xavi-010/DiplomadoReactJS" logoImage={githubLogo} altValue="GitHub"/>
       <Body/>
       <Footer/>
-    </>
+    </div>
   )
 }
 
