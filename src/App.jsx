@@ -10,6 +10,7 @@
 
 import './App.css'
 import Home from '../src/screens/Home.jsx'
+import Counter from './Components/Counter/Counter.jsx'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       <Home/>
+      <Counter/>
       {/* <Default/> */}
       {/* <Logo/>
       <Body/>
