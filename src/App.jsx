@@ -8,17 +8,24 @@
 // import Footer from './Components/Home/Footer.jsx'
 
 
+
+
+
 import './App.css'
-import Home from '../src/screens/Home.jsx'
-import Counter from './Components/Counter/Counter.jsx'
+// import Home from '../src/screens/Home.jsx'
+// import Counter from './Components/Counter/Counter.jsx'
+
+import Product from '../src/screens/Product.jsx'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <Home/>
-      <Counter/>
+      {/* <Home/> */}
+      {/* <Counter/> */}
+      <Product/>
+      
       {/* <Default/> */}
       {/* <Logo/>
       <Body/>
@@ -28,3 +35,6 @@ function App() {
 }
 
 export default App
+
+
+
