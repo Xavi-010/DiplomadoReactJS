@@ -10,31 +10,56 @@
 
 
 
-
-import './App.css'
+// sin route
+// import './App.css'
 // import Home from '../src/screens/Home.jsx'
 // import Counter from './Components/Counter/Counter.jsx'
 
-import Product from '../src/screens/Product.jsx'
+// import Product from '../src/screens/Product.jsx'
+
+// function App() {
+//   // const [count, setCount] = useState(0)
+
+//   return (
+//     <>
+//       <Home/>
+//       <Counter/>
+//       <Product/>
+      
+//       {/* <Default/> */}
+//       {/* <Logo/>
+//       <Body/>
+//       <Footer/> */}
+//     </>
+//   )
+// }
+
+// export default App
+
+
+
+
+// con route
+import './App.css'
+import Navigator from './Components/Navigation/Navigator.jsx'
+import Router from './Components/Navigation/Router.jsx'
 
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* <Home/> */}
-      {/* <Counter/> */}
-      <Product/>
-      
-      {/* <Default/> */}
-      {/* <Logo/>
-      <Body/>
-      <Footer/> */}
+      <Navigator/>
+      <Router/>
     </>
   )
 }
 
 export default App
+
+
+
+
+
 
 
 
