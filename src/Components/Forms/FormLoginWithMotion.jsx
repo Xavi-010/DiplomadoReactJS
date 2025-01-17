@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"; // Asegúrate de que esta sea la importación correcta
-import useForm from "../hooks/useForm.js";
+import useForm from "../Hooks/useForm.js";
 
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({ titleForm }) => {
