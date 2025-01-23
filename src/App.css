@@ -67,9 +67,14 @@
 }
 
 .nav-welcome{
+  margin: 0;
+  padding: 0;
   margin-left: auto;
   display: flex;
   align-items: center;
+  color: #000000;
+  font-size: 13.5px;
+  font-weight: bold;
 }
 
 .modal-overlay {
@@ -103,9 +108,15 @@
   right: 0.5rem;
   background: transparent;
   border: none;
-  color: #000000;
+  /* color: #000000; */
+  color: #555555;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.close-btn-success:hover {
+  background: transparent;
+  color: #000000;
 }
 .notification-alert {
   background-color: #f5a3be;
@@ -268,11 +279,26 @@ button[type="submit"]:hover {
 
 
 .button-logout{
-  margin-left: 20px;
+  margin: 0;
+  margin-left: 40px;
   background-color: #007bff;
   color: #fff;
   transition: .5s;
+  height: 25px;
+  width: 100px;
+  padding: 2px;
+  font-size: 14px;
 }
+
 .button-logout:hover{
   background-color: #0056b3;
+}
+
+.button-exit{
+  background-color: #fff;
+  color: #000;
+  border-color: #cc8259;
+}
+ .button-exit:hover{
+  background-color:#cc8259;
 }

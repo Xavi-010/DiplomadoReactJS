@@ -18,7 +18,7 @@ const Navigator = () => {
             <Link to="/counter" className="nav-link">Counter</Link>
             {Loggin && 
             <>
-                <p className="nav-welcome">Bienvenido, {user} | {email}</p>
+                <p className="nav-welcome">Bienvenido  { user }  |  { email}</p>
                 <Logout></Logout>
             </>
             }

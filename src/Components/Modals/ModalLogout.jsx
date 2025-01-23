@@ -22,7 +22,7 @@ return (
                     onClick={onClose}>
                     X
                 </button>
-                <button
+                <button className="button-exit"
                 onClick={()=>{
                     
                     onLogout();
