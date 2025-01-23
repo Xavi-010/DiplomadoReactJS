@@ -1,26 +1,65 @@
-import { useState } from "react";
-import { motion } from "framer-motion"; // Asegúrate de que esta sea la importación correcta
+import { useState, useEffect} from "react";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { setFormData, setIsLoggin } from "../../store/features/form/formSlice.js";
+import ModalBienvenido from "../../Components/Modals/ModalBienvenido.jsx";
+import ModalAlert from "../../Components/Modals/ModalAlert.jsx";
 import useForm from "../Hooks/useForm.js";
-import ModalInfo from "../../Components/Modals/ModalInfo.jsx";
 
 // eslint-disable-next-line react/prop-types
-const FormWithMotionAndHook = ({ titleForm }) => {
-    const { formData, handleChange } = useForm({
-        username: '',
-        email: ''
-    });
-    const [showModal, setShowModal] = useState(false);
-
+export const FormWithMotionAndHook = ({ titleForm }) => {
+    
+    const [showModalBienvenido, setShowModalBienvenido] = useState(false);
+    const [showModalAlert, setShowModalAlert] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    
+    const {formData,handleChange,reset} = useForm({
+        username:'',
+        email:'',
+        password:''
+    })
+    
+    const dataForm = useSelector((state) => state.form.dataForm);
+    const dispatch = useDispatch();
+    
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        setShowModal(true);
-        console.log(formData);
+        
+        if (formData.password=== dataForm.password) {
+            dispatch(setFormData({
+                username:formData.username,
+                email:formData.email
+            })); 
+            setShowModalBienvenido(true);
+            dispatch(setIsLoggin(true));
+            // reset()
+        } else {
+            setShowModalAlert(true);
+        }
     };
+    
+    const isLoggin = useSelector((state) => state.form.isLoggin);
 
-    const onCloseModalInfo = ()=>{
-        setShowModal(false);
-    }
+    useEffect(()=>{
+        if(!isLoggin){
+            reset();
+        }
+    },[isLoggin]);
 
+    
+    const changedPasswordVisible = () => {
+        setIsVisible(!isVisible);
+    };
+    
+    const onCloseModalBienvenido = () => {
+        setShowModalBienvenido(false);
+    };
+    
+    const onCloseModalAlert = () => {
+        setShowModalAlert(false);
+    };
+    
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -28,10 +67,16 @@ const FormWithMotionAndHook = ({ titleForm }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <ModalInfo
-                visible={showModal}
-                message="Formulario enviado !!!"
-                onClose={onCloseModalInfo}
+            <ModalBienvenido
+                visible={showModalBienvenido}
+                message={`Bienvenido: ${formData.username}`}
+                onClose={onCloseModalBienvenido}
+            />
+
+            <ModalAlert
+                visible={showModalAlert}
+                message="Username/Password incorrectos!!!"
+                onClose={onCloseModalAlert}
             />
             <form onSubmit={handleSubmit}>
                 <motion.div
@@ -47,18 +92,18 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                     animate={{ x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div>
-                        <label htmlFor="username">
-                            Username:
+                    <div className="form-input">
+                        <label htmlFor="module">
+                            Module:
+                        </label>
                             <input
                                 type="text"
-                                name="username"
-                                id="username"
-                                value={formData.username}
-                                onChange={handleChange}
+                                name="module"
+                                id="module"
+                                value={dataForm.module}
+                                disabled
                                 required
                             />
-                        </label>
                     </div>
                 </motion.div>
 
@@ -67,9 +112,30 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                     animate={{ x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div>
+                    <div className="form-input">
+                        <label htmlFor="username">
+                            Username:
+                        </label>
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                required
+                            />
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="form-input">
                         <label htmlFor="email">
                             Email:
+                        </label>
                             <input
                                 type="email"
                                 name="email"
@@ -78,7 +144,29 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                                 onChange={handleChange}
                                 required
                             />
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="form-input">
+                        <label htmlFor="password">
+                            Password:
                         </label>
+                            <input
+                                type={isVisible ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                            <button type="button" onClick={changedPasswordVisible}>
+                                {isVisible ? "Hide" : "Show"}
+                            </button>
                     </div>
                 </motion.div>
 
@@ -86,12 +174,12 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                     initial={{ y: 100 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.5 }}
-                >
-                    <button type="submit">Enviar</button>
+                    >
+                    <button type="submit">Login</button>
                 </motion.div>
             </form>
         </motion.div>
     );
 };
+export default FormWithMotionAndHook
 
-export default FormWithMotionAndHook;

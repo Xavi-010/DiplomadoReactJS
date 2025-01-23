@@ -8,13 +8,13 @@ const useForm = (initialState = {}) => {
             [name]: value,
         });
     };
-    const resetForm = () => {
+    const reset = () => {
         setFormData(initialState);
     };
     return {
         formData,
         handleChange,
-        resetForm,
+        reset,
     };
 };
 export default useForm;
